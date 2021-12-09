@@ -1,10 +1,22 @@
-**blockingqueue**&**lock-free queue** test in spsc(single-producer-single-consumer),mpsc,spmc,mpmc.
+**Blockingqueue**&**lock-free queue** test in spsc(single-producer-single-consumer),mpsc,spmc,mpmc.
 
-<h3>1.blockingqueue test</h3>
+<h3>1.Blockingqueue test</h3>
 
 - [ArrayBlockingQueueTwoLocks](https://github.com/zysaaa/queue-test/blob/master/src/main/java/blockingqueue/ArrayBlockingQueueTwoLocks.java)
 - ArrayBlockingQueue from JUC
 - LinkedBlockingQueue from JUC
+
+
+Result:
+
+- spsc: The throughput of these three is similar.
+- mpsc: The throughput of LBQ (double locks) shows advantages, but as the capacity increases, the advantages decrease.
+- spmc: The throughput of the three seems to be similar again?? 
+- mpmc: LBQ has a slight advantage in throughput, and as the capacity increases, the advantage decreases.
+
+ArrayBlockingQueueTwoLocks and LBQ perform similarly.
+
+=============================================================================
 
 Test scenario: SPSC. Start.
 
