@@ -40,8 +40,6 @@ public class ArrayBlockingQueueTwoLocks<E> implements BlockingQueue<E> {
         this.items = new Object[capacity];
     }
 
-
-
     public void put(E e) throws InterruptedException {
         if (e == null) throw new NullPointerException();
         int c;
@@ -85,11 +83,6 @@ public class ArrayBlockingQueueTwoLocks<E> implements BlockingQueue<E> {
         return x;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return count.get() == 0;
-    }
-
     private void signalNotEmpty() {
         final ReentrantLock takeLock = this.takeLock;
         takeLock.lock();
@@ -126,6 +119,12 @@ public class ArrayBlockingQueueTwoLocks<E> implements BlockingQueue<E> {
             putLock.unlock();
         }
     }
+
+    @Override
+    public boolean isEmpty() {
+        return count.get() == 0;
+    }
+
 
     @Override
     public boolean offer(E e, long timeout, TimeUnit unit) throws InterruptedException {
